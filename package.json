@@ -1,0 +1,37 @@
+{
+  "name": "mailtd",
+  "version": "1.1.1",
+  "description": "Official Node.js SDK for the Mail.td developer email platform",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test tests/*.test.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "email",
+    "testing",
+    "mail",
+    "api",
+    "sdk",
+    "mailtd"
+  ],
+  "author": "Mail.td",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mailtd/mailtd-node"
+  },
+  "homepage": "https://docs.mail.td",
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "typescript": "^5.5.0"
+  }
+}
