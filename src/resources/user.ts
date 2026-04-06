@@ -18,12 +18,14 @@ export class User {
     return res.accounts;
   }
 
-  /** Delete a mailbox under the Pro account. */
+  /** Delete a mailbox under the Pro account.
+   * @param accountId - Account ID (UUID) or email address. */
   async deleteAccount(accountId: string): Promise<void> {
     return this.client.request("DELETE", `/api/user/accounts/${accountId}`);
   }
 
-  /** Reset a mailbox password under the Pro account. */
+  /** Reset a mailbox password under the Pro account.
+   * @param accountId - Account ID (UUID) or email address. */
   async resetAccountPassword(
     accountId: string,
     options: { password?: string; authKey?: string }
@@ -33,7 +35,8 @@ export class User {
     });
   }
 
-  /** List messages for a specific mailbox under the Pro account. */
+  /** List messages for a specific mailbox under the Pro account.
+   * @param accountId - Account ID (UUID) or email address. */
   async listAccountMessages(
     accountId: string,
     options?: { page?: number }

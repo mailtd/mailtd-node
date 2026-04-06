@@ -37,7 +37,8 @@ export class Accounts {
     );
   }
 
-  /** Get mailbox info by account ID. */
+  /** Get mailbox info.
+   * @param accountId - Account ID (UUID) or email address. */
   async get(accountId: string): Promise<AccountInfo> {
     return this.client.request<AccountInfo>(
       "GET",
@@ -45,7 +46,8 @@ export class Accounts {
     );
   }
 
-  /** Delete a mailbox and all its emails permanently. */
+  /** Delete a mailbox and all its emails permanently.
+   * @param accountId - Account ID (UUID) or email address. */
   async delete(accountId: string): Promise<void> {
     return this.client.request<void>(
       "DELETE",
@@ -53,7 +55,8 @@ export class Accounts {
     );
   }
 
-  /** Reset a mailbox password. Invalidates all existing JWTs. */
+  /** Reset a mailbox password. Invalidates all existing JWTs.
+   * @param accountId - Account ID (UUID) or email address. */
   async resetPassword(
     accountId: string,
     options: { password?: string; authKey?: string }
