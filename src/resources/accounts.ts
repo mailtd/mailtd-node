@@ -55,7 +55,7 @@ export class Accounts {
     );
   }
 
-  /** Reset a mailbox password. Invalidates all existing JWTs.
+  /** Reset a mailbox password. Invalidates all existing tokens.
    * @param accountId - Account ID (UUID) or email address. */
   async resetPassword(
     accountId: string,

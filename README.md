@@ -34,8 +34,7 @@ console.log(message.subject, message.text_body);
 
 | Token Type | Format | Usage |
 |------------|--------|-------|
-| Mailbox JWT | Short-lived, from `accounts.create()` or `accounts.login()` | Per-mailbox access |
-| Pro API Token | `tm_pro_...`, long-lived | Full Pro access |
+| Pro API Token | `tm_pro_...`, long-lived | Full API access (recommended) |
 
 ```typescript
 // With a Pro API token
@@ -58,11 +57,6 @@ const domains = await client.accounts.listDomains();
 
 // Create a mailbox
 const account = await client.accounts.create('user@mail.td', {
-  password: 'pass123',
-});
-
-// Sign in to existing mailbox
-const { token } = await client.accounts.login('user@mail.td', {
   password: 'pass123',
 });
 
