@@ -28,12 +28,6 @@ export interface CreateAccountResult {
   token: string;
 }
 
-export interface LoginResult {
-  id: string;
-  address: string;
-  token: string;
-}
-
 export interface EmailSummary {
   id: string;
   sender: string;

@@ -10,7 +10,7 @@ import { User } from "./resources/user.js";
 import type { ClientOptions } from "./types.js";
 
 export class MailTD extends BaseClient {
-  /** Mailbox creation, login, and account management. */
+  /** Mailbox creation and account management. */
   public readonly accounts: Accounts;
   /** Email message operations (list, get, delete, attachments). */
   public readonly messages: Messages;

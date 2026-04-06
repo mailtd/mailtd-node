@@ -2,7 +2,6 @@ import { BaseClient } from "../client.js";
 import type {
   AccountInfo,
   CreateAccountResult,
-  LoginResult,
   Domain,
 } from "../types.js";
 
@@ -36,22 +35,6 @@ export class Accounts {
       "/api/accounts",
       { body }
     );
-  }
-
-  /**
-   * Sign in to an existing mailbox. Returns a JWT token.
-   */
-  async login(
-    address: string,
-    options: { password?: string; authKey?: string }
-  ): Promise<LoginResult> {
-    return this.client.request<LoginResult>("POST", "/api/token", {
-      body: {
-        address,
-        password: options.password,
-        auth_key: options.authKey,
-      },
-    });
   }
 
   /** Get mailbox info by account ID. */
