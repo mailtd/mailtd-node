@@ -21,11 +21,6 @@ export class BaseClient {
     this.token = options.token;
   }
 
-  /** Returns true if a Pro API token is configured. */
-  hasToken(): boolean {
-    return !!this.token;
-  }
-
   /** @internal */
   async request<T>(
     method: string,

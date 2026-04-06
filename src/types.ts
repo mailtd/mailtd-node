@@ -26,7 +26,6 @@ export interface CreateAccountResult {
   id: string;
   address: string;
   token: string;
-  suggested_next_difficulty?: number;
 }
 
 export interface LoginResult {
@@ -175,13 +174,6 @@ export interface SubscriptionStatus {
 
 export interface MailTDError {
   error: string;
-}
-
-export interface PoWSolution {
-  t: number;
-  n: string;
-  d: number;
-  token?: string;
 }
 
 export interface ClientOptions {
