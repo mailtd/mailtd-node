@@ -10,12 +10,12 @@ export class Billing {
   }
 
   /** Cancel subscription. Within 14 days: full refund. After: cancel at end of period. */
-  async cancel(): Promise<{ cancel_mode: string }> {
+  async cancel(): Promise<{ cancel_mode: string; operation_id?: string }> {
     return this.client.request("POST", "/api/user/subscription/cancel");
   }
 
   /** Resume a scheduled cancellation. */
-  async resume(): Promise<{ status: string }> {
+  async resume(): Promise<{ status: string; operation_id?: string }> {
     return this.client.request("POST", "/api/user/subscription/resume");
   }
 

@@ -9,12 +9,21 @@ export class User {
     return this.client.request("GET", "/api/user/me");
   }
 
-  /** List all mailboxes under the Pro account. */
+  /** List a page of mailboxes under the Pro account with cursor-based pagination. */
+  async listAccountsPage(options?: {
+    cursor?: string;
+  }): Promise<{ accounts: Account[]; next_cursor: string }> {
+    const query: Record<string, string> = {};
+    if (options?.cursor) query.cursor = options.cursor;
+    return this.client.request("GET", "/api/user/accounts", { query });
+  }
+
+  /**
+   * List all mailboxes under the Pro account.
+   * @deprecated Use listAccountsPage() for cursor-based pagination.
+   */
   async listAccounts(): Promise<Account[]> {
-    const res = await this.client.request<{ accounts: Account[] }>(
-      "GET",
-      "/api/user/accounts"
-    );
+    const res = await this.listAccountsPage();
     return res.accounts;
   }
 

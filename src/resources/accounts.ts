@@ -24,11 +24,9 @@ export class Accounts {
     address: string,
     options?: { password?: string; authKey?: string }
   ): Promise<CreateAccountResult> {
-    const body: Record<string, unknown> = {
-      address,
-      password: options?.password,
-      auth_key: options?.authKey,
-    };
+    const body: Record<string, unknown> = { address };
+    if (options?.password != null) body.password = options.password;
+    if (options?.authKey != null) body.auth_key = options.authKey;
 
     return this.client.request<CreateAccountResult>(
       "POST",
