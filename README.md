@@ -15,7 +15,7 @@ Requires Node.js 18+.
 ```typescript
 import { MailTD } from 'mailtd';
 
-const client = new MailTD('tm_pro_...');
+const client = new MailTD('td_...');
 
 // Create a mailbox
 const account = await client.accounts.create('test@mail.td', {
@@ -32,17 +32,15 @@ console.log(message.subject, message.text_body);
 
 ## Authentication
 
-| Token Type | Format | Usage |
-|------------|--------|-------|
-| Pro API Token | `tm_pro_...`, long-lived | Full API access (recommended) |
+All API calls require a Pro API Token (`td_...`). Pass it when creating the client:
 
 ```typescript
-// With a Pro API token
-const client = new MailTD('tm_pro_...');
+// With a token string
+const client = new MailTD('td_...');
 
 // With options
 const client = new MailTD({
-  token: 'tm_pro_...',
+  token: 'td_...',
   baseUrl: 'https://api.mail.td', // default
 });
 ```
@@ -62,6 +60,9 @@ const account = await client.accounts.create('user@mail.td', {
 
 // Get mailbox info
 const info = await client.accounts.get(accountId);
+
+// Reset password
+await client.accounts.resetPassword(accountId, { password: 'newpass' });
 
 // Delete a mailbox
 await client.accounts.delete(accountId);
@@ -143,6 +144,16 @@ await client.billing.resume();
 const portalUrl = await client.billing.getPortalUrl();
 ```
 
+### User (Pro)
+
+```typescript
+const me = await client.user.getMe();
+const accounts = await client.user.listAccounts();
+await client.user.deleteAccount(accountId);
+await client.user.resetAccountPassword(accountId, { password: 'newpass' });
+const { messages } = await client.user.listAccountMessages(accountId);
+```
+
 ## Error Handling
 
 ```typescript
@@ -153,7 +164,7 @@ try {
 } catch (err) {
   if (err instanceof APIError) {
     console.log(err.status); // 409
-    console.log(err.code);   // "address_already_exists"
+    console.log(err.code);   // "address_taken"
   }
 }
 ```
