@@ -3,6 +3,7 @@ export interface Domain {
   domain: string;
   default: boolean;
   sort_order: number;
+  pro_only: boolean;
 }
 
 export interface AccountInfo {
