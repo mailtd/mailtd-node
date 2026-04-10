@@ -1,6 +1,16 @@
 # mailtd
 
-Official Node.js SDK for the [Mail.td](https://mail.td) developer email platform.
+[![npm version](https://img.shields.io/npm/v/mailtd.svg)](https://www.npmjs.com/package/mailtd)
+[![npm downloads](https://img.shields.io/npm/dm/mailtd.svg)](https://www.npmjs.com/package/mailtd)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+Official Node.js SDK for [Mail.td](https://mail.td) — the developer email platform for **temp mail**, **email testing**, and **SMTP sandbox**.
+
+- **Temp Mail API** — Create and manage temporary email addresses programmatically
+- **Email Testing** — Receive, inspect, and verify emails in your test suite
+- **SMTP Sandbox** — Capture outbound emails in a safe sandbox environment without sending to real inboxes
+- **Webhooks** — Get notified in real-time when emails arrive
+- **Custom Domains** — Use your own domain for branded temporary mailboxes
 
 ## Install
 
@@ -17,7 +27,7 @@ import { MailTD } from 'mailtd';
 
 const client = new MailTD('td_...');
 
-// Create a mailbox
+// Create a temporary email address
 const account = await client.accounts.create('test@mail.td', {
   password: 'mypassword',
 });
@@ -29,6 +39,13 @@ const { messages } = await client.messages.list(account.id);
 const message = await client.messages.get(account.id, messages[0].id);
 console.log(message.subject, message.text_body);
 ```
+
+## Use Cases
+
+- **Automated testing** — Create temp mail addresses in CI/CD to test signup flows, OTP verification, and transactional emails
+- **Email verification testing** — Validate that your app sends the right emails with the right content
+- **SMTP sandbox** — Route your app's outbound SMTP to Mail.td sandbox to inspect emails without spamming real users
+- **QA environments** — Give each test run its own mailbox, then tear it down
 
 ## Authentication
 
@@ -168,6 +185,14 @@ try {
   }
 }
 ```
+
+## Links
+
+- [Website](https://mail.td) — Create temp mail, email testing, SMTP sandbox
+- [API Documentation](https://docs.mail.td) — Full API reference
+- [Python SDK](https://pypi.org/project/mailtd/) — `pip install mailtd`
+- [Go SDK](https://github.com/mailtd/mailtd-go) — `go get github.com/mailtd/mailtd-go`
+- [CLI](https://github.com/mailtd/mailcx-cli) — Command-line tool
 
 ## License
 
