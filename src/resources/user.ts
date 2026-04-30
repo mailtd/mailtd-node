@@ -1,4 +1,5 @@
 import { BaseClient } from "../client.js";
+import { buildResetPasswordBody } from "../crypto.js";
 import type { ProUser, Account, EmailSummary } from "../types.js";
 
 export class User {
@@ -34,14 +35,18 @@ export class User {
   }
 
   /** Reset a mailbox password under the Pro account.
+   *
+   * If `options.password` is provided, the SDK derives the auth_key locally.
+   * For UUID account IDs, `options.address` must be supplied so the SDK can
+   * compute the Argon2 salt.
+   *
    * @param accountId - Account ID (UUID) or email address. */
   async resetAccountPassword(
     accountId: string,
-    options: { password?: string; authKey?: string }
+    options: { password?: string; authKey?: string; address?: string }
   ): Promise<void> {
-    await this.client.request("PUT", `/api/user/accounts/${accountId}/reset-password`, {
-      body: { password: options.password, auth_key: options.authKey },
-    });
+    const body = await buildResetPasswordBody(accountId, options);
+    await this.client.request("PUT", `/api/user/accounts/${accountId}/reset-password`, { body });
   }
 
   /** List messages for a specific mailbox under the Pro account.

@@ -4,13 +4,12 @@
 [![npm downloads](https://img.shields.io/npm/dm/mailtd.svg)](https://www.npmjs.com/package/mailtd)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Official Node.js SDK for [Mail.td](https://mail.td) — the developer email platform for **temp mail**, **email testing**, and **SMTP sandbox**.
+Official Node.js SDK for [Mail.td](https://mail.td) — temp mail & temporary email with REST API, webhooks, and custom domains. Instant inboxes, password protected, sign in from any device.
 
 - **Temp Mail API** — Create and manage temporary email addresses programmatically
-- **Email Testing** — Receive, inspect, and verify emails in your test suite
-- **SMTP Sandbox** — Capture outbound emails in a safe sandbox environment without sending to real inboxes
 - **Webhooks** — Get notified in real-time when emails arrive
 - **Custom Domains** — Use your own domain for branded temporary mailboxes
+- **Password Protected** — Sign in to the same mailbox from any device
 
 ## Install
 
@@ -44,7 +43,6 @@ console.log(message.subject, message.text_body);
 
 - **Automated testing** — Create temp mail addresses in CI/CD to test signup flows, OTP verification, and transactional emails
 - **Email verification testing** — Validate that your app sends the right emails with the right content
-- **SMTP sandbox** — Route your app's outbound SMTP to Mail.td sandbox to inspect emails without spamming real users
 - **QA environments** — Give each test run its own mailbox, then tear it down
 
 ## Authentication
@@ -133,17 +131,6 @@ const { secret } = await client.webhooks.rotateSecret(webhook.id);
 await client.webhooks.delete(webhook.id);
 ```
 
-### Sandbox (Pro)
-
-```typescript
-const info = await client.sandbox.getInfo();
-console.log(`SMTP: ${info.smtp_host}:${info.smtp_port}`);
-
-const { messages } = await client.sandbox.listMessages();
-const msg = await client.sandbox.getMessage(messageId);
-await client.sandbox.purgeMessages();
-```
-
 ### Tokens (Pro)
 
 ```typescript
@@ -188,7 +175,7 @@ try {
 
 ## Links
 
-- [Website](https://mail.td) — Create temp mail, email testing, SMTP sandbox
+- [Website](https://mail.td) — Temp mail & temporary email with REST API
 - [API Documentation](https://docs.mail.td) — Full API reference
 - [Python SDK](https://pypi.org/project/mailtd/) — `pip install mailtd`
 - [Go SDK](https://github.com/mailtd/mailtd-go) — `go get github.com/mailtd/mailtd-go`

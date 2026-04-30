@@ -138,29 +138,6 @@ export interface Token {
   revoked_at: string | null;
 }
 
-export interface SandboxInfo {
-  enabled: boolean;
-  account_id: string | null;
-  address: string | null;
-  smtp_host: string;
-  smtp_port: number;
-  auth_method: string;
-  username: string;
-  note: string;
-  quota: number | null;
-  used: number | null;
-}
-
-export interface SandboxEmailSummary {
-  id: string;
-  sender: string;
-  from: string | null;
-  subject: string | null;
-  preview_text: string | null;
-  size: number;
-  created_at: string;
-}
-
 export interface SubscriptionStatus {
   status: "" | "active" | "canceled" | "past_due";
   cancel_mode: string;

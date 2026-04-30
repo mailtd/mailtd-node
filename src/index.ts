@@ -4,7 +4,6 @@ import { Messages } from "./resources/messages.js";
 import { Domains } from "./resources/domains.js";
 import { Webhooks } from "./resources/webhooks.js";
 import { Tokens } from "./resources/tokens.js";
-import { Sandbox } from "./resources/sandbox.js";
 import { Billing } from "./resources/billing.js";
 import { User } from "./resources/user.js";
 import type { ClientOptions } from "./types.js";
@@ -20,8 +19,6 @@ export class MailTD extends BaseClient {
   public readonly webhooks: Webhooks;
   /** API token management (Pro). */
   public readonly tokens: Tokens;
-  /** SMTP sandbox (Pro). */
-  public readonly sandbox: Sandbox;
   /** Subscription and billing (Pro). */
   public readonly billing: Billing;
   /** Pro user profile and account management. */
@@ -44,7 +41,6 @@ export class MailTD extends BaseClient {
     this.domains = new Domains(this);
     this.webhooks = new Webhooks(this);
     this.tokens = new Tokens(this);
-    this.sandbox = new Sandbox(this);
     this.billing = new Billing(this);
     this.user = new User(this);
   }
